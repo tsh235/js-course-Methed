@@ -25,8 +25,10 @@
   const count = prompt('Введите количество товара', 0);
   const category = prompt('Введите категорию товара', '');
   const price = prompt('Введите цену товара', 0);
+
   console.log('count: ', typeof count);
   console.log('price: ', typeof price);
+  console.log(typeof (count * price));
 
-  console.log(`На складе ${+count} шт товара "${item}" на сумму ${+count * +price} руб`);
+  console.log(`На складе ${+count} шт товара "${item}" на сумму ${count * price} руб`);
 }
