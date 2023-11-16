@@ -11,12 +11,12 @@ const isPrime = (number) => {
 
   for (let i = number - 1; i > 1; i--) {
     if (number % i === 0) {
-        return false;
+      return false;
     }
   }
 
   return true;
-}
+};
 
 const num = +prompt('Введите число:');
 
