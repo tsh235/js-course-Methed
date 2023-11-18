@@ -1,27 +1,28 @@
 'use strict';
 
 /*
-Напиcать функцию isPrime.
-Она принимает число и возвращает true, если число является простым, а в ином случае false.
-Простое число - целое положительное число, имеющее ровно два различных натуральных делителя - единицу и самого себя. 
+Напишите функцию getAverageValue
+для получения среднеарифметического значения
+с округлением в меньшую сторону до целого числа
+
+С помощью этой функции получите средний чек за день, в массиве данные всех чеков за день:
+const allСashbox = [4500, 3210, 650, 1250, 7830, 990, 13900, 370];
 */
 
-const isPrime = (number) => {
-  if (number < 2) return false;
+const allСashbox = [4500, 3210, 650, 1250, 7830, 990, 13900, 370];
 
-  for (let i = number - 1; i > 1; i--) {
-    if (number % i === 0) {
-      return false;
-    }
+const getAverageValue = ([...arr]) => {
+  let sum = 0;
+  for (const item of arr) {
+    sum += item;
   }
-
-  return true;
-};
-
-const num = +prompt('Введите число:');
-
-if (!Number.isNaN(num)) {
-  alert(`Введенное вами число ${isPrime(num) ? 'является простым' : 'не является простым'}`);
-} else {
-  alert('Вы ввели не число!');
+  sum /= arr.length;
+  
+  return Math.floor(sum);
 }
+
+const averageValue = getAverageValue(allСashbox);
+
+console.log('Суммы чеков за день: ', allСashbox.join(', '));
+console.log('Колличество чеков за день: ', allСashbox.length);
+console.log('Средний чек за день составляет: ', averageValue);
