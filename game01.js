@@ -23,7 +23,7 @@ const isNumber = (bot, user) => {
     getUserNumber();
   } else {
     alert(`Правильно! Игра окончена.`);
-    return;
+    return true;
   }
 }
 
