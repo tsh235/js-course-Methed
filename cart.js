@@ -49,7 +49,6 @@ print()
 
 const cart = {
   items: [],
-  // totalPrice: 0,
   count: 0,
   get totalPrice() {
     return this.calculateItemPrice();
@@ -114,4 +113,3 @@ for (let i = 0; i < 3; i++) {
 cart.print();
 
 cart.clear();
-console.log('cart: ', cart);
