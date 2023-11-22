@@ -85,33 +85,9 @@ const cart = {
   },
 };
 
-const getProduct = () => {
-  const productName = prompt('Введите название товара:');
-
-  let productPrice;
-  do {
-    productPrice = productPrice === undefined ?
-      +prompt('Введите цену товара:') :
-      +prompt('Вы ввели не число! Введите число:');
-  } while (Number.isNaN(productPrice));
-
-  let productCount;
-  do {
-    productCount = productCount === undefined ?
-      +prompt('Введите количество товара:') :
-      +prompt('Вы ввели не число! Введите число:');
-  } while (Number.isNaN(productCount));
-
-  const product = [productName, productPrice, productCount];
-
-  console.log('product: ', product);
-  return product;
-};
-
-for (let i = 0; i < 3; i++) {
-  const [productName, productPrice, productCount] = getProduct();
-  cart.add(productName, productPrice, productCount);
-}
+cart.add('Молоко', '89', '3');
+cart.add('Хлеб', '41', '2');
+cart.add('Масло', '280');
 
 cart.print();
 
