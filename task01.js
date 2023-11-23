@@ -40,8 +40,8 @@ const rectangle = {
   },
 };
 
-rectangle.widthRectangle = 'dsfsdf';
-rectangle.heightRectangle = 'sdfsdfs';
+rectangle.widthRectangle = 10;
+rectangle.heightRectangle = 50;
 
 console.log('Периметр прямоугольника: ', rectangle.perimeter);
 console.log('Площадь прямоугольника: ', rectangle.square);

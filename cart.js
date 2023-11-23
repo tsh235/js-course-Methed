@@ -3,8 +3,18 @@
 const cart = {
   items: [],
   count: 0,
+  discount: 0,
   get totalPrice() {
     return this.calculateItemPrice();
+  },
+  set setDiscount(promocode) {
+    if (typeof promocode === 'string' && promocode === 'METHED') {
+      this.discount = 15;
+    }
+
+    if (typeof promocode === 'string' && promocode === 'NEWYEAR') {
+      this.discount = 21;
+    }
   },
   add(name, price, count = 1) {
     this.items.push({
@@ -23,7 +33,9 @@ const cart = {
       totalPrice += item.price * item.count;
     });
 
-    return totalPrice;
+    return this.discount ?
+      (totalPrice -= totalPrice * this.discount / 100).toFixed(2) :
+      totalPrice.toFixed(2);
   },
   clear() {
     this.items = [];
@@ -38,6 +50,7 @@ const cart = {
 cart.add('Молоко', '89', '3');
 cart.add('Хлеб', '41', '2');
 cart.add('Масло', '280');
+cart.setDiscount = 'METHED';
 
 cart.print();
 
