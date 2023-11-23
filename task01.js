@@ -40,7 +40,7 @@ const rectangle = {
   },
 };
 
-rectangle.widthRectangle = 10;
+rectangle.widthRectangle = 20;
 rectangle.heightRectangle = 50;
 
 console.log('Периметр прямоугольника: ', rectangle.perimeter);
