@@ -12,8 +12,9 @@
 
   const getFigure = (lang, language) => {
     // получили значение от пользователя
+    let figureUser;
     const getFigurePlayer = () => {
-      const figureUser = (prompt([...lang].join(', '))).toLowerCase();
+      figureUser = (prompt([...lang].join(', '))).toLowerCase();
 
       if (!lang.some((elem) => elem.startsWith(figureUser))) {
         getFigurePlayer();
