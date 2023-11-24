@@ -56,7 +56,7 @@
 
     return function start() {
       // проверяем полученный результат
-      const chekResult = ([player, computer]) => {
+      const chekResult = ([player, computer], language) => {
         if (
           (player === 'камень' && computer === 'ножницы' ||
             player === 'rock' && computer === 'scissors') ||
@@ -65,17 +65,32 @@
           (player === 'бумага' && computer === 'камень' ||
             player === 'paper' && computer === 'rock')
         ) {
+          language === 'EN' || language === 'ENG' ?
+          alert(`
+          Computer: ${computer}
+          You: ${player}
+          Result: You win!`) :
           alert(`
           Компьютер: ${computer}
           Вы: ${player}
           Результат: Вы выиграли`);
           result.player++;
         } else if (player === computer) {
+          language === 'EN' || language === 'ENG' ?
+          alert(`
+          Computer: ${computer}
+          You: ${player}
+          Result: Draw in the game!`) :
           alert(`
           Компьютер: ${computer}
           Вы: ${player}
           Результат: Ничья`);
         } else {
+          language === 'EN' || language === 'ENG' ?
+          alert(`
+          Computer: ${computer}
+          You: ${player}
+          Result: Computer win!`) :
           alert(`
           Компьютер: ${computer}
           Вы: ${player}
@@ -85,30 +100,40 @@
       };
 
       // продолжение игры
-      const continueGame = () => {
-        const maybeMore = confirm('Продолжим?');
-        if (!maybeMore) {
-          const youSure = confirm('Точно хотите выйти?');
-          if (youSure) {
-            alert(`
-            Жаль. Игра окончена!
-            Ваш результат: ${result.player}
-            Результат компьютера: ${result.computer}`);
-            return;
-          }
-
+      const continueGame = (language) => {
+        const maybeMore = language === 'EN' || language === 'ENG' ?
+          confirm('Continue?') : confirm('Продолжим?');
+        if (maybeMore) {
           const figures = getFigure(lang, language);
-          chekResult(figures);
-          continueGame();
+          chekResult(figures, language);
+          continueGame(language);
+        } else {
+          const youSure = language === 'EN' || language === 'ENG' ?
+          confirm('Are you sure you want to finish the game?') :
+          confirm('Точно хотите выйти?');
+          if (!youSure) {
+            const figures = getFigure(lang, language);
+            chekResult(figures, language);
+            continueGame(language);
+          } else {
+            language === 'EN' || language === 'ENG' ?
+              alert(`
+              Ok. The game is over!
+              Your result: ${result.player}
+              Computer result: ${result.computer}
+              See you soon!`) :
+              alert(`
+              Жаль. Игра окончена!
+              Ваш результат: ${result.player}
+              Результат компьютера: ${result.computer}
+              До новых встреч!`);
+          }
         }
-        const figures = getFigure(lang, language);
-        chekResult(figures);
-        continueGame();
       };
 
       const figures = getFigure(lang, language);
-      chekResult(figures);
-      continueGame();
+      chekResult(figures, language);
+      continueGame(language);
     };
   };
 
