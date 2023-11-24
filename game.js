@@ -1,6 +1,7 @@
 'use strict';
 
 (() => {
+  const FIGURES_ENG = ['rock', 'scissors', 'paper'];
   const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
 
   const getRandomIntInclusive = (min, max) => {
@@ -9,25 +10,34 @@
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const getFigure = lang => {
+  const getFigure = (lang, language) => {
     // получили значение от пользователя
     const getFigurePlayer = () => {
-      const figureUser = (prompt([...FIGURES_RUS].join(', '))).toLowerCase();
+      const figureUser = (prompt([...lang].join(', '))).toLowerCase();
 
-      if (!FIGURES_RUS.some((elem) => elem.startsWith(figureUser))) {
+      if (!lang.some((elem) => elem.startsWith(figureUser))) {
         getFigurePlayer();
       }
 
-      if (figureUser[0] === 'к') return 'камень';
-      if (figureUser[0] === 'н') return 'ножницы';
-      if (figureUser[0] === 'б') return 'бумага';
+      if (figureUser[0] === 'к' &&
+        (language !== 'EN' || language !== 'ENG')) return 'камень';
+      if (figureUser[0] === 'н' &&
+        (language !== 'EN' || language !== 'ENG')) return 'ножницы';
+      if (figureUser[0] === 'б' &&
+        (language !== 'EN' || language !== 'ENG')) return 'бумага';
+      if (figureUser[0] === 'r' &&
+        (language === 'EN' || language === 'ENG')) return 'rock';
+      if (figureUser[0] === 's' &&
+        (language === 'EN' || language === 'ENG')) return 'scissors';
+      if (figureUser[0] === 'p' &&
+        (language === 'EN' || language === 'ENG')) return 'paper';
     };
 
     const figurePlayer = getFigurePlayer();
 
     // получили от компа значение
     const figureComputer =
-      FIGURES_RUS[getRandomIntInclusive(0, FIGURES_RUS.length - 1)];
+      lang[getRandomIntInclusive(0, lang.length - 1)];
 
     console.log(`${figurePlayer[0]} - ${figureComputer[0]}`);
 
@@ -41,13 +51,19 @@
       computer: 0,
     };
 
+    const lang = language === 'EN' || language === 'ENG' ?
+      FIGURES_ENG : FIGURES_RUS;
+
     return function start() {
       // проверяем полученный результат
       const chekResult = ([player, computer]) => {
         if (
-          (player === 'камень' && computer === 'ножницы') ||
-          (player === 'ножницы' && computer === 'бумага') ||
-          (player === 'бумага' && computer === 'камень')
+          (player === 'камень' && computer === 'ножницы' ||
+            player === 'rock' && computer === 'scissors') ||
+          (player === 'ножницы' && computer === 'бумага' ||
+            player === 'scissors' && computer === 'paper') ||
+          (player === 'бумага' && computer === 'камень' ||
+            player === 'paper' && computer === 'rock')
         ) {
           alert(`
           Компьютер: ${computer}
@@ -81,16 +97,16 @@
             return;
           }
 
-          const figures = getFigure();
+          const figures = getFigure(lang, language);
           chekResult(figures);
           continueGame();
         }
-        const figures = getFigure();
+        const figures = getFigure(lang, language);
         chekResult(figures);
         continueGame();
       };
 
-      const figures = getFigure();
+      const figures = getFigure(lang, language);
       chekResult(figures);
       continueGame();
     };
