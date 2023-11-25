@@ -78,7 +78,7 @@
     // получили от компа значение
     const pc = getRandomIntInclusive(0, lang.length - 1);
 
-    console.log(`${lang[pc][0]} - ${lang[user][0]}`);
+    console.log(`${lang[user][0]} - ${lang[pc][0]}`);
 
     // возвращаем массив из полученных значений
     return [user, pc];
