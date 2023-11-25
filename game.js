@@ -97,11 +97,9 @@
     };
 
     const lang = getFigures(figuresLang, language);
-    console.log('lang: ', lang);
 
     return function start() {
       // проверяем полученный результат
-      console.log(figuresLang);
       const chekResult = ([user, pc]) => {
         if (
           user === 0 && pc === 1 ||
