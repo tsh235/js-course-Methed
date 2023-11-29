@@ -1,4 +1,9 @@
 'use strict';
 
-const startGame = window.rsp('EN');
-startGame();
+let playAgain;
+
+do {
+  window.marbles();
+
+  playAgain = confirm('Хотите сыграть еще?');
+} while (playAgain === true);
